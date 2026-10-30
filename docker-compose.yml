@@ -1,0 +1,17 @@
+version: '3.9'
+services:
+  backend:
+    build: ./backend
+    container_name: reint_backend
+    ports:
+      - "8000:8000"
+    environment:
+      - PYTHONUNBUFFERED=1
+  frontend:
+    build: ./frontend
+    container_name: reint_frontend
+    ports:
+      - "5173:5173"
+    command: "npm run dev"
+    environment:
+      - NODE_ENV=development
