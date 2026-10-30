@@ -1,12 +1,15 @@
-// Frontend Dockerfile – builds React app and serves static files with nginx
-FROM node:20-alpine AS builder
+FROM node:20-alpine AS build
 WORKDIR /app
-COPY package.json tsconfig.json vite.config.ts index.html ./
-COPY src ./src
-RUN npm install --silent
+
+COPY package*.json ./
+RUN npm ci
+
+COPY . .
+# Vite bakes this into the JavaScript at build time.
+ARG VITE_API_URL=http://localhost:8000
+ENV VITE_API_URL=$VITE_API_URL
 RUN npm run build
 
 FROM nginx:alpine
-COPY --from=builder /app/dist /usr/share/nginx/html
+COPY --from=build /app/dist /usr/share/nginx/html
 EXPOSE 80
-CMD ["nginx", "-g", "daemon off;"]

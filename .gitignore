@@ -13,3 +13,11 @@ __pycache__/
 .pytest_cache/
 docs/
 backend/scripts/samples/
+
+node_modules/
+dist/
+.env
+__pycache__/
+.pytest_cache/
+docs/
+backend/scripts/samples/

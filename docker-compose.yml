@@ -1,17 +1,17 @@
-version: '3.9'
 services:
   backend:
     build: ./backend
-    container_name: reint_backend
     ports:
       - "8000:8000"
     environment:
-      - PYTHONUNBUFFERED=1
+      CORS_ORIGINS: http://localhost:3000
+
   frontend:
-    build: ./frontend
-    container_name: reint_frontend
+    build:
+      context: ./frontend
+      args:
+        VITE_API_URL: http://localhost:8000
     ports:
-      - "5173:5173"
-    command: "npm run dev"
-    environment:
-      - NODE_ENV=development
+      - "3000:80"
+    depends_on:
+      - backend
