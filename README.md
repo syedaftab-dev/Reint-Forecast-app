@@ -9,8 +9,8 @@ Scope: national wind generation, delivery days 1 to 31 January 2026. Data is fro
 
 ## Live demo
 
-- App: <VERCEL-URL>
-- API: <RENDER-URL> (try `/health` and `/accuracy`)
+- App: https://reint-forecast-app.vercel.app/
+- API: https://reint-backend.onrender.com (try `/health` and `/accuracy`)
 
 The API runs on a free tier and sleeps when idle. The first request can take about 50 seconds.
 
